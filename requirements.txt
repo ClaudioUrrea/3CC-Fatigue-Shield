@@ -1,0 +1,5 @@
+numpy>=1.24
+matplotlib>=3.7
+numba>=0.58
+# optional, only for the RoboDK benchmark cell:
+# robodk>=5.6

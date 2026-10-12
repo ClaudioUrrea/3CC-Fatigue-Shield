@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article and the archived release."
+title: "3CC-Fatigue-Shield: Sustainable work allocation under the three-compartment muscle fatigue model"
+authors:
+  - family-names: Urrea
+    given-names: Claudio
+    orcid: "https://orcid.org/0000-0001-7197-8928"
+    affiliation: "University of Santiago of Chile"
+version: "1.0.0"
+date-released: "2026-09-22"
+license: MIT
+doi: "10.6084/m9.figshare.33960379"
+repository-code: "https://github.com/ClaudioUrrea/3CC-Fatigue-Shield"
+keywords: [muscle fatigue, three-compartment model, rest allowance, forward invariance, safety shield, human-robot collaboration, task allocation, ergonomics]
