@@ -176,21 +176,8 @@ def figuras(todo):
     import matplotlib.pyplot as plt
     from estilo_figuras import aplicar
     aplicar()
-    # --- Figura: trayectorias de una semilla, voraz sin/con escudo
-    rng = np.random.default_rng(1000)
-    arr = rng.poisson(1.0 / INTERARRIVAL, size=(T_SHIFT, len(ESTACIONES)))
-    fig, axs = plt.subplots(1, 2, figsize=(6.6, 2.6), sharey=True)
-    cols = ("#b58900", "#6c3fa0", "#2f6fd6")
-    for ax, sh, tit in ((axs[0], False, "Greedy throughput"), (axs[1], True, "Greedy throughput + shield")):
-        tr = np.zeros((T_SHIFT, 3))
-        simular(1, sh, arr, LOAD, TAU_H, ROBOT_FACTOR, OPERATOR, ROBOT, KAPPA, SPEED, RB_MODE, NSUB, tr)
-        t = np.arange(T_SHIFT) / 3600
-        for o, lab in enumerate(("Op1 (novice)", "Op2 (intermediate)", "Op3 (expert)")):
-            ax.plot(t[::20], tr[::20, o], lw=0.8, color=cols[o], label=lab)
-        ax.axhline(THETA, ls="--", lw=0.8, color="k")
-        ax.set_title(tit); ax.set_xlabel("Time (h)")
-    axs[0].set_ylabel(r"$M_F$"); axs[1].legend(frameon=False, loc="upper right")
-    fig.savefig("fig_shield_traces.pdf"); fig.savefig("fig_shield_traces.png")
+    # La figura de trayectorias se genera en figura_traces_v2.py, que la dibuja
+    # como envolventes de 2 min y añade el panel de máximos por semilla.
     # --- Figura: throughput y MF máximo por política
     fig, axs = plt.subplots(1, 2, figsize=(6.6, 2.7))
     abrev = ("RB", "GT", "TH"); x = np.arange(3); w = 0.2
@@ -201,7 +188,7 @@ def figuras(todo):
             mx = [r[n + sh]["max_MF"][0] for n in POLICIES]
             off = (2 * i + j - 1.5) * w
             c = "#c0392b" if sh == "" else "#1f4e8c"
-            lab = f"{'no shield' if sh == '' else 'shield'}, {'nominal' if i == 0 else 'high demand'}"
+            lab = f"{'No shield' if sh == '' else 'Shield'}, {'nominal' if i == 0 else 'high demand'}"
             axs[0].bar(x + off, thr, w, color=c, hatch=hatch, edgecolor="white", label=lab)
             axs[1].bar(x + off, mx, w, color=c, hatch=hatch, edgecolor="white")
     axs[1].axhline(THETA, ls="--", lw=0.8, color="k")

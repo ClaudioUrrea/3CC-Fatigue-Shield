@@ -14,8 +14,13 @@ reproducible, para el artículo de Mathematics (MDPI):
 Uso:
   1) Abrir RoboDK y crear una estación nueva vacía (File > New Station).
   2) pip install robodk
-  3) Ajustar las rutas de ROBOTS y RUTA_* en la sección 1.
+  3) Descargar de la biblioteca en línea de RoboDK los ficheros
+     Doosan-Robotics-H2017.robot y Doosan-Robotics-A0509-White.robot y
+     colocarlos en ./robots/ (o apuntar a su carpeta con la variable de
+     entorno ROBODK_LIBRARY).  No se redistribuyen con este repositorio.
   4) python crear_escena_hrc.py
+Todas las rutas son relativas a la carpeta de este script; la estación y el
+JSON de parámetros se escriben en ../results/ (o en HRC_OUTPUT_DIR).
 El script es idempotente: al re-ejecutarlo borra y reconstruye todo lo que
 empiece con el prefijo "HRC_".
 """
@@ -31,14 +36,27 @@ from robodk.robomath import Mat, transl, rotx, rotz, invH, pi
 # 1. PARÁMETROS (todo en mm y grados; origen = base del H2017)
 # =============================================================================
 PREFIJO = "HRC_"
-RUTA_ESTACION = r"C:\RoboDK\Stations\Paper2_Mathematics.rdk"
-RUTA_JSON = r"C:\llama\escena_hrc_parametros.json"
+
+# ---------------------------------------------------------------------------
+# Rutas.  Todas son relativas a la carpeta de este script, de modo que el
+# repositorio se pueda clonar y ejecutar en cualquier equipo sin editar nada.
+# La salida se escribe en ../results/.  Los ficheros .robot de Doosan no se
+# redistribuyen aquí (licencia de RoboDK): descárguelos de la biblioteca en
+# línea de RoboDK y colóquelos en ./robots/, o indique otra carpeta con la
+# variable de entorno ROBODK_LIBRARY.
+# ---------------------------------------------------------------------------
+AQUI = os.path.dirname(os.path.abspath(__file__))
+DIR_SALIDA = os.environ.get("HRC_OUTPUT_DIR", os.path.join(AQUI, os.pardir, "results"))
+DIR_ROBOTS = os.environ.get("ROBODK_LIBRARY", os.path.join(AQUI, "robots"))
+
+RUTA_ESTACION = os.path.join(DIR_SALIDA, "Paper2_Mathematics.rdk")
+RUTA_JSON = os.path.join(DIR_SALIDA, "escena_hrc_parametros.json")
 
 ROBOTS = {
-    "H2017": {"archivo": r"C:\RoboDK\Library\Doosan-Robotics-H2017.robot",
+    "H2017": {"archivo": os.path.join(DIR_ROBOTS, "Doosan-Robotics-H2017.robot"),
               "base": (0, 0, 0), "rotz": 0, "gripper": "vacio",
               "alcance": 1700, "carga_kg": 20, "rol": "carga pesada"},
-    "A0509": {"archivo": r"C:\RoboDK\Library\Doosan-Robotics-A0509-White.robot",
+    "A0509": {"archivo": os.path.join(DIR_ROBOTS, "Doosan-Robotics-A0509-White.robot"),
               "base": (2600, 0, 950), "rotz": 0, "gripper": "pinza",
               "alcance": 900, "carga_kg": 5, "rol": "precision"},
 }

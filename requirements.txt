@@ -1,5 +1,8 @@
 numpy>=1.24
 matplotlib>=3.7
 numba>=0.58
+scipy>=1.11
+# optional, only for the minus-sign audit in estilo_figuras.py:
+# fonttools>=4.40
 # optional, only for the RoboDK benchmark cell:
 # robodk>=5.6

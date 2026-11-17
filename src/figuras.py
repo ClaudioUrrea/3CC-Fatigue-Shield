@@ -58,16 +58,28 @@ fig.savefig("fig_rest_allowance.pdf"); fig.savefig("fig_rest_allowance.png")
 
 # ---- Figura 3: positividad de Euler según el paso ------------------------
 hmax = dt_max(p)
-fig, ax = plt.subplots(figsize=(5.2, 2.6))
+fig, ax = plt.subplots(figsize=(5.2, 2.8))
+ax.axhspan(-0.2, 0.0, color="#c0392b", alpha=0.07, lw=0)
+peor = None
 for h, col, lab in ((0.95 * hmax, "#1f4e8c", r"$h=0.95\,h_{\max}$"),
                     (1.10 * hmax, "#c0392b", r"$h=1.10\,h_{\max}$")):
     x = np.array([0.9, 0.1, 0.0]); tt, ma = [0.0], [x[0]]
-    for k in range(12):
+    for k in range(6):
         x = paso(0.0, x, h, p, seguro=False); tt.append((k + 1) * h); ma.append(x[0])
-    ax.plot(tt, ma, marker="o", ms=2.5, lw=1.0, color=col, label=lab)
-ax.axhline(0, color="k", lw=0.6)
-ax.set_xlabel("Time (s)"); ax.set_ylabel(r"$M_A$ (explicit Euler, rest)")
-ax.legend(frameon=False); fig.savefig("fig_euler.pdf"); fig.savefig("fig_euler.png")
+    ax.plot(tt, ma, marker="o", ms=3.2, lw=1.1, color=col, label=lab)
+    if peor is None or min(ma) < peor[1]:
+        peor = (tt[int(np.argmin(ma))], min(ma))
+ax.axhline(0, color="k", lw=0.7)
+# el primer paso por encima de la cota deja M_A fuera del simplex
+ax.annotate(f"$M_A={peor[1]:.3f}$".replace("-", "−"),
+            xy=peor, xytext=(peor[0] + 0.13, peor[1] - 0.07),
+            fontsize=8, color="#c0392b", ha="left",
+            arrowprops=dict(arrowstyle="->", lw=0.7, color="#c0392b"))
+ax.set_xlabel("Time (s)"); ax.set_ylabel(r"$M_A$ (Explicit Euler, rest)")
+ax.set_xlim(-0.02, 0.70); ax.set_ylim(-0.22, 0.98)
+ax.set_yticks([-0.2, 0.0, 0.2, 0.4, 0.6, 0.8])
+ax.legend(frameon=False, loc="upper right")
+fig.savefig("fig_euler.pdf"); fig.savefig("fig_euler.png")
 print("Fuente usada:", fuente)
 print("Pico cerrado (Fig.1):", round(pico_reducido(TL, Tw, Tr), 4), " pico simulado último ciclo:",
       round(max(mf[-(Tw + Tr):]), 4))
