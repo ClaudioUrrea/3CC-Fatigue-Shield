@@ -40,8 +40,12 @@ python verificar_periodico.py       # periodic peak and rest allowance table
 python figuras.py                   # Figures 1-3
 python escudo_experimento.py        # shield table and Figure 6 (seeds 1000-1029)
 python figura_traces_v2.py          # Figure 5
-python revision_experimentos.py     # Tables 1, 3, 5, 6, 7 of the revised article
+python revision_experimentos.py     # Tables 1, 3, 5, 6, 7 of the article
 ```
+
+Tested with Python 3.13, NumPy 2.5, SciPy 1.18, Matplotlib 3.11 and Numba 0.68;
+with these versions the scripts reproduce the files in `results/` exactly.
+
 
 `revision_experimentos.py` runs seven experiments:
 
@@ -71,6 +75,14 @@ The RoboDK cell (optional) requires RoboDK and `pip install robodk`; open an
 empty station and run `python crear_escena_hrc.py` from `robodk/`, then
 `python visibilidad.py mixto`. The Doosan H2017 and A0509 robot files must be
 downloaded from the RoboDK online library.
+
+## Versions
+
+| Release | Content |
+|---|---|
+| v1.0.0 | Code, results and figures of the submitted article |
+| v1.1.0 | Experiments and figures added in revision round 1 |
+| v1.1.1 | Final layout of Figure 5 for the published article (reference-level labels and legend moved clear of the data); no change to code results or data |
 
 ## Citation
 
