@@ -11,4 +11,17 @@ date-released: "2026-11-19"
 license: MIT
 doi: "10.6084/m9.figshare.33960379"
 repository-code: "https://github.com/ClaudioUrrea/3CC-Fatigue-Shield"
+preferred-citation:
+  type: article
+  title: "Sustainable Work Allocation Under the Three-Compartment Muscle Fatigue Model: Invariance, Closed-Form Rest Allowances, and a Certified Shield for Human-Robot Collaboration"
+  authors:
+    - family-names: Urrea
+      given-names: Claudio
+      orcid: "https://orcid.org/0000-0001-7197-8928"
+  journal: "Mathematics"
+  volume: 14
+  issue: 22
+  start: 4278
+  year: 2026
+  doi: "10.3390/math14224278"
 keywords: [muscle fatigue, three-compartment model, rest allowance, forward invariance, safety shield, human-robot collaboration, task allocation, ergonomics]

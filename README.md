@@ -2,7 +2,7 @@
 
 Code, results and figures for the article
 
-> C. Urrea, **"Sustainable Work Allocation Under the Three-Compartment Muscle Fatigue Model: Invariance, Closed-Form Rest Allowances, and a Certified Shield for Human–Robot Collaboration"**, *Mathematics* (MDPI), 2026.
+> C. Urrea, **"Sustainable Work Allocation Under the Three-Compartment Muscle Fatigue Model: Invariance, Closed-Form Rest Allowances, and a Certified Shield for Human–Robot Collaboration"**, *Mathematics* **2026**, *14*(22), 4278. https://doi.org/10.3390/math14224278
 
 Author: Claudio Urrea ([ORCID 0000-0001-7197-8928](https://orcid.org/0000-0001-7197-8928)), Department of Electrical Engineering, University of Santiago of Chile.
 
